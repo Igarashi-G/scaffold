@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+/////////////////////////////////////////////////////////////
+// 基础对象
+
+
+/////////////////////////////////////////////////////////////
+// 请求 - 响应
+message PingRequest {
+  string request_id = 1;
+  string message = 2;
+}
+message PingReply {
+  int32 status = 1;
+  string message = 2;
+}
+
+message AddNodeRequest {
+  string request_id = 1;
+  string etcd_endpoints = 2;
+}
+message AddNodeReply {
+  int32 status = 1;
+}
+
+
+/////////////////////////////////////////////////////////////
+// 接口定义
+service NodeService {
+  // 检测主机是否正常在线
+  rpc ping(PingRequest) returns (PingReply) {}
+  // 添加节点到管理平台中
+  rpc node_add(AddNodeRequest) returns (AddNodeReply) {}
+
+}

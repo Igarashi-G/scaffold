@@ -1,0 +1,14 @@
+[Unit]
+Description=Agent Server
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/miniconda3/bin/python /opt/scaffold/src/agent/main.py --log_to_stderr=false --log_level=info
+PIDFile=/opt/scaffold/src/log/agent.pid
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
