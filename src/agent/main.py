@@ -38,8 +38,6 @@ class Application(daemon.Daemon):
             loop.add_signal_handler(signal.SIGUSR1, self.info_handler)
 
         # step 2. register my tasks
-        print("????", args)
-        print("????", args.workers)
         rpc_server = RpcServer(loop, args.host, args.port, args.workers)
         self.task_list.append(loop.create_task(rpc_server.run(), name="rpc_server"))
 

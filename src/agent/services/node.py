@@ -24,7 +24,6 @@ class NodeService(node_pb2_grpc.NodeServiceServicer):
     async def node_add(self, request, context) -> node_pb2.AddNodeReply:
         """添加节点"""
         etcd_endpoints = request.etcd_endpoints
-        print(etcd_endpoints)
         status = StatusCode.STATUS_SUCCESS
 
         reply = node_pb2.AddNodeReply(
